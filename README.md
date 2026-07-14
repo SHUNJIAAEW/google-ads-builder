@@ -1,4 +1,4 @@
-# Search Ads Builder
+# Google Ads Builder
 
 **Point Claude Code at your website URL and it builds a complete, ready-to-launch Google Search Ads campaign.** No API keys, no Google Ads login.
 
@@ -16,7 +16,7 @@ A [Claude Code](https://claude.com/claude-code) skill that turns one input — y
 Clone straight into your Claude Code skills folder:
 
 ```bash
-git clone https://github.com/mikefutia/search-ads-builder.git ~/.claude/skills/search-ads-builder
+git clone https://github.com/mikefutia/google-ads-builder.git ~/.claude/skills/google-ads-builder
 ```
 
 Restart Claude Code so it picks up the new skill.

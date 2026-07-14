@@ -1,18 +1,18 @@
 ---
-name: search-ads-builder
+name: google-ads-builder
 description: >
   Point Claude at a website URL and it builds a ready-to-launch Google Search Ads
   campaign — keyword themes grouped into tight ad groups, a full negative-keyword
   list, Responsive Search Ads (15 headlines + 4 descriptions each) written to Google's
   character limits and policy, plus sitelinks/callouts and recommended match types,
   bidding, and budget split. Exports a Google Ads Editor CSV you can import in one click,
-  and renders a campaign dashboard. Trigger on "build my Google search campaign",
-  "build search ads", "google ads from my website", "make me a search campaign",
-  "generate google search ads".
+  and renders a campaign dashboard. Trigger on "build my Google ads", "build google ads",
+  "build my Google search campaign", "build search ads", "google ads from my website",
+  "make me a search campaign", "generate google search ads".
 allowed-tools: Bash(python3 *) Read Write WebFetch WebSearch
 ---
 
-# Search Ads Builder
+# Google Ads Builder
 
 **The problem this solves:** spinning up a Google Search campaign from scratch is hours of tedium — keyword research, grouping into tight ad groups, writing 15 headlines and 4 descriptions per ad group inside Google's exact character limits, building a negative list so you don't burn budget on junk clicks, and wiring up extensions. Most people either pay an agency for the setup or let Google's "Smart" defaults build a sloppy campaign that leaks spend.
 
