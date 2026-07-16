@@ -13,6 +13,7 @@ import html
 import json
 import os
 import sys
+import unicodedata
 import webbrowser
 
 RUN_DIR = os.path.join(os.getcwd(), "search-ads-run")
@@ -28,6 +29,14 @@ MATCH_TO_CRITERION = {
     "phrase": "Phrase",
     "exact": "Exact",
 }
+
+
+def ad_width(s):
+    """Google Ads character width. Full-width (CJK) glyphs count as 2 units,
+    so a Japanese headline maxes out at 15 characters against HEADLINE_MAX=30.
+    east_asian_width Fullwidth/Wide/Ambiguous -> 2, everything else -> 1."""
+    return sum(2 if unicodedata.east_asian_width(ch) in ("F", "W", "A") else 1
+               for ch in str(s))
 
 
 def load():
@@ -85,7 +94,7 @@ def esc(s):
 
 
 def chip(text, over):
-    n = len(text)
+    n = ad_width(text)
     cls = "over" if over else "ok"
     return (f'<div class="chip {cls}"><span class="ct">{esc(text)}</span>'
             f'<span class="cc">{n}</span></div>')
@@ -123,8 +132,8 @@ def render_html(c):
             f'{esc((k.get("match") or "phrase")[:1].upper())}</span>{esc(k.get("text",""))}</span>'
             for k in kws)
         rsa = ag.get("rsa", {})
-        heads = "".join(chip(h, len(h) > HEADLINE_MAX) for h in rsa.get("headlines", []))
-        descs = "".join(chip(d, len(d) > DESC_MAX) for d in rsa.get("descriptions", []))
+        heads = "".join(chip(h, ad_width(h) > HEADLINE_MAX) for h in rsa.get("headlines", []))
+        descs = "".join(chip(d, ad_width(d) > DESC_MAX) for d in rsa.get("descriptions", []))
         groups_html += f"""
         <div class="group">
           <div class="ghead">
@@ -243,11 +252,11 @@ def main():
     overs = []
     for ag in c.get("ad_groups", []):
         for h in ag.get("rsa", {}).get("headlines", []):
-            if len(h) > HEADLINE_MAX:
-                overs.append(f"  headline {len(h)}/{HEADLINE_MAX}: {h!r} ({ag.get('name')})")
+            if ad_width(h) > HEADLINE_MAX:
+                overs.append(f"  headline {ad_width(h)}/{HEADLINE_MAX}: {h!r} ({ag.get('name')})")
         for d in ag.get("rsa", {}).get("descriptions", []):
-            if len(d) > DESC_MAX:
-                overs.append(f"  desc {len(d)}/{DESC_MAX}: {d!r} ({ag.get('name')})")
+            if ad_width(d) > DESC_MAX:
+                overs.append(f"  desc {ad_width(d)}/{DESC_MAX}: {d!r} ({ag.get('name')})")
     print(f"✓ Wrote {CSV_OUT}")
     print(f"✓ Wrote {HTML_OUT}")
     if overs:

@@ -73,6 +73,8 @@ One RSA per ad group. Follow Google's spec **exactly**:
 
 Character counts are non-negotiable — the export/render step flags any overflow, but write them correct the first time.
 
+**Double-byte languages (Japanese / Chinese / Korean):** Google counts each full-width character as **2 units**, so the real limits are **15 full-width characters per headline** and **45 per description** (half of 30 / 90). Mixed half-width Latin/digits still count as 1 each. The renderer already measures width this way and flags overflow, but write Japanese headlines to the 全角15字 / 説明文全角45字 limit from the start. Also localize the negative-keyword junk list (`求人`, `採用`, `年収`, `無料`, `中古`, `使い方`, `自分で`, `evaluation`, etc.) to the business.
+
 ## 5 — Extensions + settings
 
 - **Sitelinks** (4): real pages from the site with a 25-char text + two 35-char descriptions each.
