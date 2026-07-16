@@ -71,7 +71,8 @@ def export_csv(c):
                             "Criterion Type": csv_criterion(kw.get("match"))})
             rsa = ag.get("rsa", {})
             if rsa:
-                row = {"Campaign": camp, "Ad Group": agname, "Final URL": url}
+                row = {"Campaign": camp, "Ad Group": agname,
+                       "Final URL": ag.get("final_url") or url}
                 for i, h in enumerate(rsa.get("headlines", [])[:15], 1):
                     row[f"Headline {i}"] = h
                 for i, d in enumerate(rsa.get("descriptions", [])[:4], 1):
@@ -134,6 +135,7 @@ def render_html(c):
         rsa = ag.get("rsa", {})
         heads = "".join(chip(h, ad_width(h) > HEADLINE_MAX) for h in rsa.get("headlines", []))
         descs = "".join(chip(d, ad_width(d) > DESC_MAX) for d in rsa.get("descriptions", []))
+        lp = ag.get("final_url") or c.get("url", "")
         groups_html += f"""
         <div class="group">
           <div class="ghead">
@@ -142,6 +144,7 @@ def render_html(c):
             <span class="gtheme" style="color:{col}">{esc(theme)}</span>
             <span class="gcount">{len(kws)} keywords</span>
           </div>
+          <div class="lp mono">→ {esc(lp)}</div>
           <div class="kwrap">{kw_html}</div>
           <div class="sub">Headlines <span class="lim">≤{HEADLINE_MAX}</span></div>
           <div class="chips">{heads}</div>
@@ -193,6 +196,7 @@ def render_html(c):
   .gname {{ font-size:20px; font-weight:700; }}
   .gtheme {{ font-size:13px; text-transform:uppercase; letter-spacing:0.08em; font-weight:700; }}
   .gcount {{ margin-left:auto; color:var(--dim); font-size:14px; }}
+  .lp {{ color:var(--blue); font-size:13px; margin:-8px 0 14px; opacity:0.85; word-break:break-all; }}
   .kwrap {{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:18px; }}
   .kw {{ background:var(--panel2); border:1px solid var(--line); border-radius:8px;
     padding:6px 10px 6px 6px; font-size:15px; display:inline-flex; align-items:center; gap:8px; }}

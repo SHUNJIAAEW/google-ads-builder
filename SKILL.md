@@ -62,6 +62,8 @@ Reason about the account **before** writing copy. Build tightly-themed ad groups
 
 Each ad group: 5–15 tightly related keywords, mostly **phrase** and **exact** match (broad only with Smart Bidding + tight negatives). Note match type per keyword.
 
+**Landing page per ad group.** If the site has dedicated pages per product/service/symptom, set `final_url` on the ad group to that page instead of dumping every click on the homepage — it lifts both Quality Score and conversion rate. Only point at pages you have actually confirmed return 200.
+
 ## 3 — Negative keywords
 
 Build a negative list so budget isn't wasted:
@@ -105,6 +107,7 @@ Write the full structured campaign to `./search-ads-run/campaign.json`:
   "ad_groups": [{
     "name": "Category — <theme>",
     "theme": "high-intent|problem-aware|brand|competitor",
+    "final_url": "https://.../deep-page",   // optional — falls back to the campaign url
     "keywords": [{ "text": "buy blue widgets", "match": "phrase" }],
     "rsa": { "headlines": ["...15, each <=30..."], "descriptions": ["...4, each <=90..."], "paths": ["path1", "path2"] }
   }],
