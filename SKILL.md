@@ -9,6 +9,14 @@ description: >
   and renders a campaign dashboard. Trigger on "build my Google ads", "build google ads",
   "build my Google search campaign", "build search ads", "google ads from my website",
   "make me a search campaign", "generate google search ads".
+  日本語対応: サイトのURLからGoogle検索広告（リスティング広告）のキャンペーン一式
+  ——広告グループ設計・キーワードとマッチタイプ・除外キーワードリスト・レスポンシブ検索広告
+  （見出し15本＋説明文4本、全角文字数の上限を厳守）・サイトリンクとコールアウト・入札戦略と
+  予算配分——を作成し、Google Ads Editor にそのままインポートできるCSVとダッシュボードを出力する。
+  次のように言われたら発火: 「Google広告を作って」「Google広告を作成して」「検索広告を作って」
+  「リスティング広告を作って」「リスティング広告を組んで」「広告キャンペーンを作って」
+  「このサイトで広告を出したい」「サイトのURLから広告を作って」「検索広告のキャンペーンを設計して」
+  「Google広告のCSVを作って」「広告文を作って」。
 allowed-tools: Bash(python3 *) Read Write WebFetch WebSearch
 ---
 
