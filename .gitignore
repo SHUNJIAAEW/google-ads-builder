@@ -5,3 +5,13 @@ search-ads-run/
 __pycache__/
 *.pyc
 .DS_Store
+
+# Claude Code の個人設定。「今後は確認しない」で許可したコマンドがそのまま保存され、
+# パスワードや API キーが平文で含まれることがあるため、コミットしない。
+.claude/settings.local.json
+CLAUDE.local.md
+
+# 秘密情報
+.env
+.env.*
+!.env.example
