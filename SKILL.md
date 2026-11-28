@@ -1,22 +1,18 @@
 ---
 name: google-ads-builder
 description: >
-  Point Claude at a website URL and it builds a ready-to-launch Google Search Ads
-  campaign — keyword themes grouped into tight ad groups, a full negative-keyword
-  list, Responsive Search Ads (15 headlines + 4 descriptions each) written to Google's
-  character limits and policy, plus sitelinks/callouts and recommended match types,
-  bidding, and budget split. Exports a Google Ads Editor CSV you can import in one click,
-  and renders a campaign dashboard. Trigger on "build my Google ads", "build google ads",
-  "build my Google search campaign", "build search ads", "google ads from my website",
-  "make me a search campaign", "generate google search ads".
+  Builds a ready-to-launch Google Search Ads campaign from a website URL — tightly
+  themed ad groups with keywords and match types, a negative-keyword list, Responsive
+  Search Ads (15 headlines + 4 descriptions each) within Google's character limits and
+  policy, sitelinks/callouts, and a bidding and budget recommendation — exported as a
+  Google Ads Editor CSV plus a campaign dashboard. Use when someone wants a Google
+  search campaign, its ad groups and keywords, or search ad copy built or designed,
+  especially starting from their site's URL (e.g. "build my Google ads").
   日本語対応: サイトのURLからGoogle検索広告（リスティング広告）のキャンペーン一式
-  ——広告グループ設計・キーワードとマッチタイプ・除外キーワードリスト・レスポンシブ検索広告
-  （見出し15本＋説明文4本、全角文字数の上限を厳守）・サイトリンクとコールアウト・入札戦略と
-  予算配分——を作成し、Google Ads Editor にそのままインポートできるCSVとダッシュボードを出力する。
-  次のように言われたら発火: 「Google広告を作って」「Google広告を作成して」「検索広告を作って」
-  「リスティング広告を作って」「リスティング広告を組んで」「広告キャンペーンを作って」
-  「このサイトで広告を出したい」「サイトのURLから広告を作って」「検索広告のキャンペーンを設計して」
-  「Google広告のCSVを作って」「広告文を作って」。
+  （広告グループ・キーワードとマッチタイプ・除外キーワード・レスポンシブ検索広告・
+  サイトリンクとコールアウト・入札戦略と予算配分）を作り、Google Ads Editor 用のCSVと
+  ダッシュボードを出力する。Google広告・検索広告・リスティング広告のキャンペーンや
+  広告文を作りたい、設計したいと頼まれたときに使う（例:「Google広告を作って」）。
 allowed-tools: Bash(python3 *) Read Write WebFetch WebSearch
 ---
 
@@ -138,7 +134,7 @@ The script only renders + exports; the campaign design is model judgment.
 
 ## 8 — Report in chat
 
-Close with: the campaign at a glance (N ad groups, M keywords, the budget split); the single sharpest keyword theme (where the cheapest high-intent conversions are); the one thing to fix before launch (usually: install conversion tracking); and the one-sentence takeaway — *"a paid-search manager's first-week build, from just your homepage URL."* Tell them the CSV path and that it imports straight into Google Ads Editor.
+Close with: the campaign at a glance (N ad groups, M keywords, the budget split); the single sharpest keyword theme (where the cheapest high-intent conversions are); the one thing to fix before launch (usually: install conversion tracking); and a one-sentence takeaway for this business. Tell them the CSV path and that it imports straight into Google Ads Editor.
 
 ---
 
